@@ -4,7 +4,9 @@ import hello.core.entity.discount.DiscountPolicy;
 import hello.core.entity.member.Member;
 import hello.core.entity.member.MemberRepository;
 import hello.core.entity.order.Order;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
@@ -21,5 +23,10 @@ public class OrderServiceImpl implements OrderService {
         int discountPrice = discountPolicy.discount(member, itemPrice);
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
+    }
+
+    // test
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
