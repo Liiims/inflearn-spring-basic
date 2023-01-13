@@ -1,5 +1,6 @@
 package hello.core.service.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.entity.discount.DiscountPolicy;
 import hello.core.entity.member.Member;
 import hello.core.entity.member.MemberRepository;
@@ -12,9 +13,9 @@ public class OrderServiceImpl implements OrderService {
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
-        this.discountPolicy = rateDiscountPolicy;
+        this.discountPolicy = discountPolicy;
     }
 
     @Override

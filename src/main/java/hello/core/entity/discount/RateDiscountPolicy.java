@@ -1,10 +1,12 @@
 package hello.core.entity.discount;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.entity.member.Grade;
 import hello.core.entity.member.Member;
 import org.springframework.stereotype.Component;
 
 @Component
+@MainDiscountPolicy // @Qualifier("mainDiscountPolicy") 와 동일하게 동작함(@Qualifier("mainDiscountPolicy") 는 컴파일 오류로 잡을 수 없음)
 public class RateDiscountPolicy implements DiscountPolicy {
 
     private int discountPercent = 10; // 10% 할인
