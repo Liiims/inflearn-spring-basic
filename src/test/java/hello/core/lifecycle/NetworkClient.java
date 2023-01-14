@@ -1,5 +1,8 @@
 package hello.core.lifecycle;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 /**
  * 외부 네트워크에 미리 연결하는 객체를 하나 생성한다고 가정
  */
@@ -32,6 +35,7 @@ public class NetworkClient {
     /**
      * 빈 등록 초기화 메서드
      */
+    @PostConstruct
     public void init() {
         System.out.println("\n === NetworkClient.init ===");
         connect();
@@ -41,6 +45,7 @@ public class NetworkClient {
     /**
      * 빈 소멸 메서드
      */
+    @PreDestroy
     public void close() {
         System.out.println("\n === NetworkClient.close ===");
         disconnect();
