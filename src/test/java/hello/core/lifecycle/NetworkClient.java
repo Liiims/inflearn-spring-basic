@@ -1,12 +1,9 @@
 package hello.core.lifecycle;
 
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
-
 /**
  * 외부 네트워크에 미리 연결하는 객체를 하나 생성한다고 가정
  */
-public class NetworkClient implements InitializingBean, DisposableBean {
+public class NetworkClient {
 
     private String url; // 접속할 서버의 url
 
@@ -33,21 +30,19 @@ public class NetworkClient implements InitializingBean, DisposableBean {
     }
 
     /**
-     * 의존관계 주입이 끝난 후 호출되는 메서드 (초기화 지원)
+     * 빈 등록 초기화 메서드
      */
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        System.out.println("\n=== NetworkClient.afterPropertiesSet ===");
+    public void init() {
+        System.out.println("\n === NetworkClient.init ===");
         connect();
         call("초기화 연결 메시지");
     }
 
     /**
-     * 빈이 종료될 때 호출되는 메서드 (소멸 지원)
+     * 빈 소멸 메서드
      */
-    @Override
-    public void destroy() throws Exception {
-        System.out.println("\n=== NetworkClient.destroy ===");
+    public void close() {
+        System.out.println("\n === NetworkClient.close ===");
         disconnect();
     }
 }
